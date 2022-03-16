@@ -1,7 +1,7 @@
 const net = require('net');
 
 // establishes a connection with the game server
-const connect = function () {
+const connect = function() {
   console.log("Connecting ...");
   const conn = net.createConnection({
     host: '165.227.47.243', // change to IP address of computer or ngrok host if tunneling
@@ -14,7 +14,7 @@ const connect = function () {
     console.log(`${data}`);
   });
   conn.on("connect", () => {
-    console.log(`Successfully connected to game server.`)
+    console.log(`Successfully connected to game server.`);
     conn.write(`Name: GWG`);
     // setInterval(() => {
     //   conn.write("Move: up");
@@ -22,7 +22,7 @@ const connect = function () {
     // setTimeout(() => {
     //   conn.write("Move: right");
     // }, 600);
-  })
+  });
   return conn;
 };
 
