@@ -1,3 +1,5 @@
+const { shortMsg } = require("./constants");
+
 // setup interface to handle user input from stdin
 
 // "Move: up" - move up one square (unless facing down)
@@ -30,15 +32,14 @@ const handleUserInput = (input) => {
     // console.log("You pressed 'd'.\n")
     connection.write("Move: right");
   }
-  if (input === "h") {
-    // console.log("You pressed 'd'.\n")
-    connection.write("Say: Hello!");
-  }
-  if (input === "g") {
-    // console.log("You pressed 'd'.\n")
-    connection.write("Say: Glad to be back!");
+  for (let key of Object.keys(shortMsg)) {
+    if (input === key) {
+      connection.write(`Say: ${shortMsg[key]}`);
+      // console.log(`${shortMsg[key]}`);
+    }
   }
 };
+
 const setupInput = function(conn) {
   connection = conn;
   const stdin = process.stdin;

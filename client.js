@@ -1,11 +1,12 @@
 const net = require('net');
+const { IP, PORT, msgOnConnect, username } = require("./constants");
 
 // establishes a connection with the game server
 const connect = function() {
   console.log("Connecting ...");
   const conn = net.createConnection({
-    host: '165.227.47.243', // change to IP address of computer or ngrok host if tunneling
-    port: 50541 // or change to the ngrok port if tunneling
+    host: IP, // change to IP address of computer or ngrok host if tunneling
+    port: PORT // or change to the ngrok port if tunneling
   });
   
   // interpret incoming data as text
@@ -14,8 +15,8 @@ const connect = function() {
     console.log(`${data}`);
   });
   conn.on("connect", () => {
-    console.log(`Successfully connected to game server.`);
-    conn.write(`Name: GWG`);
+    console.log(`${msgOnConnect}`);
+    conn.write(`Name: ${username}`);
     // setInterval(() => {
     //   conn.write("Move: up");
     // }, 50);
